@@ -1,0 +1,11 @@
+---
+# tasks file for Lab2
+- name: Create dir
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+    mode: '0755'
+- name: Create file
+  file:
+    path: "{{ dest_dir }}/{{ dest_file }}"
+    state: touch

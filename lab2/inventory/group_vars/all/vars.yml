@@ -1,0 +1,6 @@
+---
+dest_dir: "/srv/dir_for_lab2"
+dest_file: "file_for_lab2"
+dest_user: "lab2user"
+dest_group: "lab2group"
+user_pass: "12345"
