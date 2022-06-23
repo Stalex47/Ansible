@@ -1,0 +1,10 @@
+---
+dest_dir: "/home/lab5user/apps"
+dest_user: "lab5user"
+user_pass: "12345"
+mail_host: "192.168.0.90"
+mail_port: "25"
+mail_sender: "a.stupkin@bms-team.ru"
+mail_to: "Admin <admin@mail.ru>"
+mail_subject: "Report for {{ ansible_hostname }}"
+mail_body: "User {{ dest_user }} can't create"
