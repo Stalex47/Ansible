@@ -1,0 +1,4 @@
+---
+fs_dir: "/srv/ansible/fs.dir"
+fs_file: "fs.document"
+user_pass: "12345"

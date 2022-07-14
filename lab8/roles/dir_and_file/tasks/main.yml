@@ -1,0 +1,11 @@
+---
+# tasks file for Lab8
+- name: Create dir
+  file:
+    path: "{{ fs_dir }}"
+    state: directory
+    mode: '0755'
+- name: Create file
+  file:
+    path: "{{ fs_dir }}/{{ fs_file }}"
+    state: touch
