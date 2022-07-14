@@ -1,0 +1,51 @@
+---
+- name: Check_NGINX
+  uri:
+    url: "http://{{ ansible_host }}:{{ nginx_port }}"
+    status_code: 200
+  delegate_to: 127.0.0.1  
+  register: result
+
+- name: Show result NGINX
+  debug:
+    msg: "{{ result.status }}"
+    
+#- name: check if mysql has port 3306 open
+#  shell: ss -tp state listening sport = :3306 | grep mysqld    
+
+- name: Check if port 3306 is listening
+  wait_for:
+    port: "{{ mysql_port }}"
+    delay: 5
+    timeout: 10
+    msg: "Port {{ mysql_port }} listning"
+  register: port_check
+
+- name: Show status port mysql
+  debug: 
+    msg: "{{ port_check }}"
+
+- name: check if mysql is running
+  command: "mysql -h {{ ansible_host }} -P {{ mysql_port }} -e 'select 1'"
+  register: result_sql
+
+- name: Show result mysql
+  debug: 
+    msg: "{{ result_sql.stdout_lines }}"
+
+- name: Check GET ya.ru
+  uri:
+    url: "https://ya.ru"
+    method: GET
+    status_code:
+      - 200
+      - 202
+    validate_certs: no
+    return_content: yes
+    headers:
+      Content-Type: "application/json"
+  ignore_errors: true
+  register: new_task_results
+  
+
+  
