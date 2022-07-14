@@ -1,0 +1,7 @@
+hostname: localhost
+listen_http: 80
+upstream_name: localhost
+upstream_server1: 192.168.0.113
+upstream_server2: 192.168.0.89
+
+

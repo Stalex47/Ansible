@@ -1,0 +1,31 @@
+---
+- name: Install Nginx Web Server on RedHat Family
+  yum:
+    name=nginx
+    state=latest
+  when:
+    ansible_os_family == "RedHat"
+  notify:
+    - nginx systemd
+
+- name: Replace NGINX config
+  template:
+    src=templates/nginx.conf
+    dest=/etc/nginx/nginx.conf
+  notify:
+    - NGINX reload
+
+- name: Add NGINX host-v1 config
+  template:
+    src=templates/nginx_v1.conf
+    dest=/etc/nginx/conf.d/nginx_v1.conf
+  notify:
+    - NGINX reload
+
+- name: Add NGINX host-v2 config
+  template:
+    src=templates/nginx_v2.conf
+    dest=/etc/nginx/conf.d/nginx_v2.conf
+  notify:
+    - NGINX reload
+    
